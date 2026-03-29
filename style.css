@@ -383,25 +383,8 @@ button {
 
 .price-table {
   border-collapse: collapse;
-  width: max-content;
   min-width: 760px;
-  display: block;
-}
-
-.price-table thead,
-.price-table tbody,
-.price-table tr {
-  width: 100%;
-  display: table;
-  table-layout: fixed;
-}
-
-.price-table thead {
-  width: 100%;
-}
-
-.price-table tbody {
-  width: 100%;
+  width: max-content;
 }
 
 .price-table thead tr {
