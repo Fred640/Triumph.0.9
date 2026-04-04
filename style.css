@@ -1,6 +1,28 @@
 html {
+  scroll-behavior: smooth;
   scroll-padding-top: 90px;
 }
+
+#services,
+#vip,
+#rules,
+#contacts {
+  scroll-margin-top: 90px;
+}
+
+@media (max-width: 900px) {
+  html {
+    scroll-padding-top: 90px;
+  }
+
+  #services,
+  #vip,
+  #rules,
+  #contacts {
+    scroll-margin-top: 90px;
+  }
+}
+
 :root {
   --bg: #050608;
   --card: rgba(255, 255, 255, 0.04);
