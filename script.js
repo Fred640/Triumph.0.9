@@ -1,6 +1,7 @@
 const burgerBtn = document.getElementById("burgerBtn");
 const mobileMenu = document.getElementById("mobileMenu");
 const mobileLinks = document.querySelectorAll(".mobile-link");
+const navLinks = document.querySelectorAll('.nav a[href^="#"]');
 const header = document.querySelector(".header");
 
 if (burgerBtn && mobileMenu) {
@@ -14,15 +15,20 @@ if (burgerBtn && mobileMenu) {
 
   mobileLinks.forEach((link) => {
     link.addEventListener("click", (event) => {
-      event.preventDefault();
-
-      const targetId = link.getAttribute("href");
-      const target = document.querySelector(targetId);
-      if (!target) return;
+      const href = link.getAttribute("href");
 
       burgerBtn.classList.remove("active");
       mobileMenu.classList.remove("open");
       burgerBtn.setAttribute("aria-expanded", "false");
+
+      if (!href || !href.startsWith("#")) {
+        return;
+      }
+
+      event.preventDefault();
+
+      const target = document.querySelector(href);
+      if (!target) return;
 
       const headerHeight = header ? header.offsetHeight : 90;
       const targetTop =
@@ -36,8 +42,26 @@ if (burgerBtn && mobileMenu) {
       }, 250);
     });
   });
-}
 
+  navLinks.forEach((link) => {
+    link.addEventListener("click", (event) => {
+      event.preventDefault();
+
+      const targetId = link.getAttribute("href");
+      const target = document.querySelector(targetId);
+      if (!target) return;
+
+      const headerHeight = header ? header.offsetHeight : 90;
+      const targetTop =
+        target.getBoundingClientRect().top + window.pageYOffset - headerHeight - 12;
+
+      window.scrollTo({
+        top: targetTop,
+        behavior: "smooth",
+      });
+    });
+  });
+}
 const slides = document.querySelectorAll(".slide");
 const dots = document.querySelectorAll(".dot");
 const prevBtn = document.getElementById("prevSlide");
